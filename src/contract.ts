@@ -1,8 +1,15 @@
+import {v4 as uuidv4} from 'uuid';
+
 import Claim from './claim';
 import Product from './product';
 
-// TODO Add comments on contract being an extended warranty, and its lifecycle
+// Contract represents an extended warranty for a covered product.
+// A contract is in a PENDING state prior to the effective date,
+// ACTIVE between effective and expiration dates, and EXPIRED after
+// the expiration date.
+
 export default class Contract {
+  readonly id:              string;   // Unique ID
   readonly purchase_price:  number;
   readonly covered_product: Product;
 
@@ -14,7 +21,6 @@ export default class Contract {
 
   claims:                   Claim[];
 
-  // TODO: Add unique ID
   constructor(purchase_price:   number,
               product:          Product,
               effective_date:   Date,
@@ -26,6 +32,7 @@ export default class Contract {
     this.expiration_date   = expiration_date;
     this.purchase_date     = purchase_date;
 
+    this.id                = uuidv4(); // Autoassigned
     this.status            = 'PENDING';
     this.claims            = [];
   }

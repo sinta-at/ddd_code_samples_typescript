@@ -19,7 +19,7 @@ function fakeContract() {
 
     expect(contract.claims.length).toBe(1);
     expect(contract.claims[0].amount).toBe(79.0);
-    expect(contract.claims[0].failure_date).toStrictEqual(new Date(2010, 5, 8));
+    expect(contract.claims[0].failure_date).toEqual(new Date(2010, 5, 8));
   });
 
   test('Adjudicate claim with invalid amount', () => {

@@ -14,7 +14,7 @@ import LineItem from '../line_item';
     claim.repair_pos.push(repair_po);
 
     expect(claim.amount).toBe(100.0);
-    expect(claim.failure_date).toStrictEqual(new Date(2010, 5, 8));
+    expect(claim.failure_date).toEqual(new Date(2010, 5, 8));
     expect(claim.repair_pos[0].line_items[0].type).toBe('PARTS');
     expect(claim.repair_pos[0].line_items[0].amount).toBe(45.0);
     expect(claim.repair_pos[0].line_items[0].description).toBe(description);
