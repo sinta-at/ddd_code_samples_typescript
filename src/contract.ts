@@ -9,16 +9,23 @@ export default class Contract {
   effective_date:           Date;
   expiration_date:          Date;
   purchase_date:            Date;
-  in_store_guarantee_days:  number;
 
   status:                   string;
 
   claims:                   Claim[];
 
   // TODO: Add unique ID
-  constructor(purchase_price: number, product: Product) {
+  constructor(purchase_price:   number,
+              product:          Product,
+              effective_date:   Date,
+              expiration_date:  Date,
+              purchase_date:    Date) {
     this.purchase_price    = purchase_price;
     this.covered_product   = product;
+    this.effective_date    = effective_date;
+    this.expiration_date   = expiration_date;
+    this.purchase_date     = purchase_date;
+
     this.status            = 'PENDING';
     this.claims            = [];
   }

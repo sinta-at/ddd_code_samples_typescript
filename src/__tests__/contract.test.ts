@@ -3,7 +3,7 @@ import Product from '../product';
 
   test('contract is set up properly', () => {
     var product  = new Product('dishwasher', 'OEUOEU23', 'Whirlpool', '7DP840CWDB0')
-    var contract = new Contract(100.0, product)
+    var contract = new Contract(100.0, product, new Date(2010, 5, 8), new Date(2013, 5, 8), new Date(2010, 5, 8))
     expect(contract.purchase_price).toBe(100.0);
     expect(contract.status).toEqual('PENDING');
     expect(contract.covered_product.name).toEqual('dishwasher')

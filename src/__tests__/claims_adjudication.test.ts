@@ -5,11 +5,8 @@ import ClaimsAdjudication from '../claims_adjudication';
 
 function fakeContract() {
   var product  = new Product('dishwasher', 'OEUOEU23', 'Whirlpool', '7DP840CWDB0');
-  var contract = new Contract(100.0, product);
-
+  var contract = new Contract(100.0, product, new Date(2010, 5, 8), new Date(2012, 5, 8), new Date(2009, 5, 8));
   contract.status          = 'ACTIVE'
-  contract.effective_date  =  new Date(2010, 5, 8);
-  contract.expiration_date =  new Date(2012, 5, 8);
 
   return contract
 }

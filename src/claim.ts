@@ -8,6 +8,7 @@ export default class Claim {
   repair_pos:            RepairPO[];
 
   constructor(amount: number, failure_date: Date) {
+    this.id           = 0; // TODO: change to UUID
     this.amount       = amount;
     this.failure_date = failure_date;
     this.repair_pos   = [];
