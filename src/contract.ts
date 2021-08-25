@@ -9,17 +9,17 @@ import Product from './product';
 // the expiration date.
 
 export default class Contract {
-  readonly id:              string;   // Unique ID
-  readonly purchase_price:  number;
-  readonly covered_product: Product;
+  id:              string;   // Unique ID
+  purchase_price:  number;
+  covered_product: Product;
 
-  effective_date:           Date;
-  expiration_date:          Date;
-  purchase_date:            Date;
+  effective_date:  Date;
+  expiration_date: Date;
+  purchase_date:   Date;
 
-  status:                   string;
+  status:          string;
 
-  claims:                   Claim[];
+  claims:          Claim[];
 
   constructor(purchase_price:   number,
               product:          Product,
