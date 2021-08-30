@@ -1,3 +1,5 @@
+import {v4 as uuidv4} from 'uuid';
+
 import Claim from '../claim';
 import RepairPO from '../repair_po';
 import LineItem from '../line_item';
@@ -20,4 +22,17 @@ import LineItem from '../line_item';
     expect(claim.repair_pos[0].line_items[0].description).toBe(description);
   });
 
-  // TODO: Add claim equality based on unique IDs, not properties
+  // entities compare by unique IDs, not properties
+  test('claim equality', () => {
+    var claim1 = new Claim(100.0, new Date(2010, 5, 8));
+    var claim2 = new Claim(100.0, new Date(2010, 5, 8));
+    var claim3 = new Claim(100.0, new Date(2010, 5, 8));
+
+    var expected_id = uuidv4();
+    claim1.id = expected_id;
+    claim2.id = expected_id;
+    expect(claim1.id).toEqual(claim2.id);
+
+    claim3.id = uuidv4();
+    expect(claim1.id).not.toEqual(claim3.id);
+  });
