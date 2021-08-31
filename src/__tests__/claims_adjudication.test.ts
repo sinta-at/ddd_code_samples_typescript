@@ -1,16 +1,20 @@
 import Contract from '../contract';
 import Product from '../product';
+import TermsAndConditions from '../terms_and_conditions';
 import Claim from '../claim';
 import ClaimsAdjudication from '../claims_adjudication';
 
 function fakeContract() {
-  var product  = new Product('dishwasher', 'OEUOEU23', 'Whirlpool', '7DP840CWDB0');
-  var contract = new Contract(100.0, product, new Date(2010, 5, 8), new Date(2012, 5, 8), new Date(2009, 5, 8));
-  contract.status          = 'ACTIVE'
+  var product              = new Product('dishwasher', 'OEUOEU23', 'Whirlpool', '7DP840CWDB0');
+  var terms_and_conditions = new TermsAndConditions(new Date(2009, 5, 8), new Date(2010, 5, 8), new Date(2012, 5, 8));
+
+  var contract      = new Contract(100.0, product, terms_and_conditions);
+  contract.status   = 'ACTIVE'
 
   return contract
 }
 
+  // Now that we have this logic moved to Contract, we could use Jest to mock out contract.covers() and simplify these tests
   test('Adjudicate valid claim', () => {
     var contract = fakeContract();
     var claim    = new Claim(79.0, new Date(2010, 5, 8));
