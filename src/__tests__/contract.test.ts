@@ -4,6 +4,7 @@ import Contract from '../contract';
 import Product from '../product';
 import TermsAndConditions from '../terms_and_conditions';
 import Claim from '../claim';
+import SubscriptionRenewed from '../subscription_renewed';
 
   test('contract is set up properly', () => {
     var product  = new Product('dishwasher', 'OEUOEU23', 'Whirlpool', '7DP840CWDB0');
@@ -107,6 +108,29 @@ import Claim from '../claim';
 
     var extended_terms_and_conditions = new TermsAndConditions(new Date(2009, 5, 8), new Date(2010, 5, 8), new Date(2014, 5, 8));
     expect(contract.terms_and_conditions.equals(extended_terms_and_conditions)).toBe(true);
+    expect(contract.events.length).toBe(1);
+    expect(contract.events[0] instanceof SubscriptionRenewed).toBe(true);
+    expect(contract.events[0].occurred_on).toEqual(new Date());
+    expect(contract.events[0].contract_id).toEqual(contract.id);
+    expect(contract.events[0].reason).toEqual('Automatic Annual Renewal');
+  });
+
+  // TODO: Practice using domain events by making this test pass
+  test('terminate contract', () => {
+    var product  = new Product('dishwasher', 'OEUOEU23', 'Whirlpool', '7DP840CWDB0');
+    var terms_and_conditions = new TermsAndConditions(new Date(2009, 5, 8), new Date(2010, 5, 8), new Date(2013, 5, 8));
+
+    var contract = new Contract(100.0, product, terms_and_conditions);
+
+    contract.terminate('Debbie', 'Limit of Liability Exceeded');
+
+    expect(contract.status).toBe('FULFILLED');
+    expect(contract.events.length).toBe(1);
+    expect(contract.events[0] instanceof CustomerReimbursementRequested).toBe(true);
+    expect(contract.events[0].occurred_on).toEqual(new Date());
+    expect(contract.events[0].contract_id).toEqual(contract.id);
+    expect(contract.events[0].reason).toEqual('Limit of Liability Exceeded');
+    expect(contract.in_effect_for(new Date())).toBe(false);
   });
 
   // entities compare by unique IDs, not properties

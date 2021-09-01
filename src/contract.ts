@@ -3,6 +3,7 @@ import {v4 as uuidv4} from 'uuid';
 import Claim from './claim';
 import Product from './product';
 import TermsAndConditions from './terms_and_conditions';
+import SubscriptionRenewed from './subscription_renewed';
 
 /**
  Contract represents an extended warranty for a covered product.
@@ -19,6 +20,7 @@ export default class Contract {
   terms_and_conditions:   TermsAndConditions;
 
   status:                 string;
+  events:                 [SubscriptionRenewed];
 
   claims:                 Claim[];
 
@@ -32,6 +34,7 @@ export default class Contract {
     this.id                = uuidv4(); // Autoassigned
     this.status            = 'PENDING';
     this.claims            = [];
+    this.events            = [];
   }
 
   covers(claim: Claim) {
@@ -62,5 +65,6 @@ export default class Contract {
 
   extend_annual_subscription() {
     this.terms_and_conditions = this.terms_and_conditions.annually_extended();
+    this.events.push(new SubscriptionRenewed(this.id, 'Automatic Annual Renewal'))
   }
 }
