@@ -4,6 +4,7 @@ import Claim from './claim';
 import Product from './product';
 import TermsAndConditions from './terms_and_conditions';
 import SubscriptionRenewed from './subscription_renewed';
+import CustomerReimbursementRequested from './customer_reimbursement_requested';
 
 /**
  Contract represents an extended warranty for a covered product.
@@ -20,7 +21,7 @@ export default class Contract {
   terms_and_conditions:   TermsAndConditions;
 
   status:                 string;
-  events:                 [SubscriptionRenewed];
+  events:                 [SubscriptionRenewed, CustomerReimbursementRequested];
 
   claims:                 Claim[];
 
@@ -66,5 +67,10 @@ export default class Contract {
   extend_annual_subscription() {
     this.terms_and_conditions = this.terms_and_conditions.annually_extended();
     this.events.push(new SubscriptionRenewed(this.id, 'Automatic Annual Renewal'))
+  }
+
+  terminate(rep_name, reason) {
+    this.status = 'FULFILLED';
+    this.events.push(new CustomerReimbursementRequested(this.id, rep_name, reason));
   }
 }

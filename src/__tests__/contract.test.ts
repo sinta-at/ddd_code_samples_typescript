@@ -5,6 +5,7 @@ import Product from '../product';
 import TermsAndConditions from '../terms_and_conditions';
 import Claim from '../claim';
 import SubscriptionRenewed from '../subscription_renewed';
+import CustomerReimbursementRequested from '../customer_reimbursement_requested';
 
   test('contract is set up properly', () => {
     var product  = new Product('dishwasher', 'OEUOEU23', 'Whirlpool', '7DP840CWDB0');
