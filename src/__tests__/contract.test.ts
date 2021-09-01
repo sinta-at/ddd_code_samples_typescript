@@ -111,7 +111,7 @@ import CustomerReimbursementRequested from '../customer_reimbursement_requested'
     expect(contract.terms_and_conditions.equals(extended_terms_and_conditions)).toBe(true);
     expect(contract.events.length).toBe(1);
     expect(contract.events[0] instanceof SubscriptionRenewed).toBe(true);
-    expect(contract.events[0].occurred_on).toEqual(new Date());
+    expect(contract.events[0].occurred_on.toString()).toEqual(new Date().toString());
     expect(contract.events[0].contract_id).toEqual(contract.id);
     expect(contract.events[0].reason).toEqual('Automatic Annual Renewal');
   });
@@ -128,10 +128,11 @@ import CustomerReimbursementRequested from '../customer_reimbursement_requested'
     expect(contract.status).toBe('FULFILLED');
     expect(contract.events.length).toBe(1);
     expect(contract.events[0] instanceof CustomerReimbursementRequested).toBe(true);
-    expect(contract.events[0].occurred_on).toEqual(new Date());
+    expect(contract.events[0].occurred_on.toString()).toEqual(new Date().toString());
     expect(contract.events[0].contract_id).toEqual(contract.id);
     expect(contract.events[0].reason).toEqual('Limit of Liability Exceeded');
     expect(contract.in_effect_for(new Date())).toBe(false);
+    expect(contract.status_derived_from_events(new Date())).toBe('FULFILLED');
   });
 
   // entities compare by unique IDs, not properties

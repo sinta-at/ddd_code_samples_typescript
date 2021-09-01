@@ -73,4 +73,12 @@ export default class Contract {
     this.status = 'FULFILLED';
     this.events.push(new CustomerReimbursementRequested(this.id, rep_name, reason));
   }
+
+  // Show an alternate way: Use events to derive current state
+  status_derived_from_events(date: Date) {
+    const has_been_reimbursed = (event) => event instanceof CustomerReimbursementRequested;
+    if this.events.some(has_been_reimbursed) return 'FULFILLED';
+
+    return this.status;
+  }
 }

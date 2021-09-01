@@ -26,10 +26,10 @@ export default class TermsAndConditions {
     return new TermsAndConditions(new Date(2009, 5, 8), new Date(2010, 5, 8), new_expiration_date);
   }
 
-  // Seems that correct date comparison in JS requires getTime(), toString(), or valueOf()...
+  // Seems that correct date comparison in JS requires getTime(), toString(), or valueOf()...use toString() because we don't want time value
   equals(other) {
-    return this.purchase_date.getTime()    == other.purchase_date.getTime() &&
-           this.effective_date.getTime()   == other.effective_date.getTime() &&
-           this.expiration_date.getTime()  == other.expiration_date.getTime()
+    return this.purchase_date.toString()    == other.purchase_date.toString() &&
+           this.effective_date.toString()   == other.effective_date.toString() &&
+           this.expiration_date.toString()  == other.expiration_date.toString()
   }
 }
