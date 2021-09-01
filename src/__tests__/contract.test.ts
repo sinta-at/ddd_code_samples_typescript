@@ -127,7 +127,7 @@ import SubscriptionRenewed from '../subscription_renewed';
     expect(contract.status).toBe('FULFILLED');
     expect(contract.events.length).toBe(1);
     expect(contract.events[0] instanceof CustomerReimbursementRequested).toBe(true);
-    expect(contract.events[0].occurred_on).toEqual(new Date());
+    expect(contract.events[0].occurred_on.toString()).toEqual(new Date().toString());
     expect(contract.events[0].contract_id).toEqual(contract.id);
     expect(contract.events[0].reason).toEqual('Limit of Liability Exceeded');
     expect(contract.in_effect_for(new Date())).toBe(false);
