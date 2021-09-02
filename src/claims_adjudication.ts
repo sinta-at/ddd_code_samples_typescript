@@ -13,13 +13,21 @@ to the benefit or coverage requirements.
 
 export default class Claims_Adjudication {
   adjudicate(contract: Contract, new_claim: Claim) {
-    var claim_total = 0.0
-    contract.claims.forEach(claim => claim_total += claim.amount);
-    if (((contract.purchase_price - claim_total) * 0.8 > new_claim.amount) &&
-        (contract.status == 'ACTIVE') &&
-        (new_claim.failure_date >= contract.effective_date) &&
-        (new_claim.failure_date <= contract.expiration_date)) {
+    if ((this.limit_of_liability(contract) > new_claim.amount) &&
+         this.in_effect_for(contract, new_claim.failure_date)) {
       contract.claims.push(new_claim);
     }
+  }
+
+  limit_of_liability(contract: Contract) {
+    var claim_total = 0.0;
+    contract.claims.forEach(claim => claim_total += claim.amount);
+    return (contract.purchase_price - claim_total) * 0.8;
+  }
+
+  in_effect_for(contract: Contract, date: Date) {
+    return (contract.status == 'ACTIVE') &&
+           (date >= contract.effective_date) &&
+           (date <= contract.expiration_date));
   }
 }
