@@ -41,7 +41,7 @@ function fakeContract() {
     expect(contract.claims.length).toBe(0);
   });
 
-    test('Adjudicate claim for pending contract', () => {
+    test('Adjudicate claim for expired contract', () => {
       var contract = fakeContract();
       contract.status = 'EXPIRED'
       var claim    = new Claim(79.0, new Date(2010, 5, 8));
