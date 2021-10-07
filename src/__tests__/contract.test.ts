@@ -30,8 +30,8 @@ import Product from '../product';
     var expected_id = uuidv4();
     contract1.id = expected_id;
     contract2.id = expected_id;
-    expect(contract1.id).toEqual(contract2.id);
+    expect(contract1).toEqual(contract2);
 
     contract3.id = uuidv4();
-    expect(contract1.id).not.toEqual(contract3.id);
+    expect(contract1).not.toEqual(contract3);
   });
