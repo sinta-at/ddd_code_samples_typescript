@@ -13,9 +13,9 @@ export default class Contract {
   purchase_price:  number;
   covered_product: Product;
 
+  purchase_date:   Date;
   effective_date:  Date;
   expiration_date: Date;
-  purchase_date:   Date;
 
   status:          string;
 
@@ -23,14 +23,14 @@ export default class Contract {
 
   constructor(purchase_price:   number,
               product:          Product,
+              purchase_date:    Date,
               effective_date:   Date,
-              expiration_date:  Date,
-              purchase_date:    Date) {
+              expiration_date:  Date) {
     this.purchase_price    = purchase_price;
     this.covered_product   = product;
+    this.purchase_date     = purchase_date;
     this.effective_date    = effective_date;
     this.expiration_date   = expiration_date;
-    this.purchase_date     = purchase_date;
 
     this.id                = uuidv4(); // Autoassigned
     this.status            = 'PENDING';
