@@ -8,6 +8,7 @@ N.b.: This code has a lot of issues. This is deliberate. For example, the majori
 
 Run unit tests via the command line as follows:
 
+    $ npm run build
     $ npm test
 
 or
