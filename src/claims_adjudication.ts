@@ -26,7 +26,7 @@ export default class Claims_Adjudication {
   }
 
   in_effect_for(contract: Contract, date: Date) {
-    return (contract.status == 'ACTIVE') &&
+    return ((contract.status == 'ACTIVE') &&
            (date >= contract.effective_date) &&
            (date <= contract.expiration_date));
   }

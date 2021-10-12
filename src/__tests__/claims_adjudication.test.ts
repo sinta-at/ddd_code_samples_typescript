@@ -5,7 +5,7 @@ import ClaimsAdjudication from '../claims_adjudication';
 
 function fakeContract() {
   var product  = new Product('dishwasher', 'OEUOEU23', 'Whirlpool', '7DP840CWDB0');
-  var contract = new Contract(100.0, product, new Date(2010, 5, 8), new Date(2012, 5, 8), new Date(2009, 5, 8));
+  var contract = new Contract(100.0, product, new Date(2010, 5, 6), new Date(2010, 5, 8), new Date(2013, 5, 8));
   contract.status          = 'ACTIVE'
 
   return contract
@@ -62,7 +62,7 @@ function fakeContract() {
 
   test('Adjudicate claim after expiration date', () => {
     var contract = fakeContract();
-    var claim    = new Claim(79.0, new Date(2012, 5, 9));
+    var claim    = new Claim(79.0, new Date(2013, 5, 9));
 
     new ClaimsAdjudication().adjudicate(contract, claim);
 
