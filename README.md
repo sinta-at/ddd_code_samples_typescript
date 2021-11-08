@@ -6,6 +6,14 @@ We are going to pretend that we are members of the warranty application team for
 
 N.b.: This code has a lot of issues. This is deliberate. For example, the majority of the objects are devoid of behavior and there is little documentation. Also, the tests are incomplete, poorly named, duplicated, and intermixed with the production code. Try to accept that we are not going to fix most of the issues. Instead, focus on applying the techniques and patterns taught in the workshop to see the impact they can have.
 
+## Installation
+
+Install the project dependencies:
+
+    $ npm install
+
+## Run Unit Tests
+
 Run unit tests via the command line as follows:
 
     $ npm run build
