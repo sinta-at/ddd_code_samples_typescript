@@ -110,7 +110,7 @@ import SubscriptionRenewed from '../subscription_renewed';
     expect(contract.terms_and_conditions.equals(extended_terms_and_conditions)).toBe(true);
     expect(contract.events.length).toBe(1);
     expect(contract.events[0] instanceof SubscriptionRenewed).toBe(true);
-    expect(contract.events[0].occurred_on).toEqual(new Date());
+    expect(contract.events[0].occurred_on.toString()).toEqual(new Date().toString());
     expect(contract.events[0].contract_id).toEqual(contract.id);
     expect(contract.events[0].reason).toEqual('Automatic Annual Renewal');
   });
