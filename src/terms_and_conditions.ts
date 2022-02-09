@@ -16,14 +16,14 @@ export default class TermsAndConditions {
   }
 
   status(date: Date) {
-    if date.getTime() < this.effective_date.getTime() return 'PENDING';
-    if date.getTime() > this.expiration_date.getTime() return 'EXPIRED';
+    if (date.getTime() < this.effective_date.getTime()) return 'PENDING';
+    if (date.getTime() > this.expiration_date.getTime()) return 'EXPIRED';
     return 'ACTIVE'
   }
 
   annually_extended() {
     var new_expiration_date = this.expiration_date; new_expiration_date.setFullYear(new_expiration_date.getFullYear() + 1);
-    return new TermsAndConditions(new Date(2009, 5, 8), new Date(2010, 5, 8), new_expiration_date);
+    return new TermsAndConditions(this.purchase_date, this.effective_date, new_expiration_date);
   }
 
   // Seems that correct date comparison in JS requires getTime(), toString(), or valueOf()...use toString() because we don't want time value

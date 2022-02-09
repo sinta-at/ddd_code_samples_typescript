@@ -77,7 +77,7 @@ export default class Contract {
   // Show an alternate way: Use events to derive current state
   status_derived_from_events(date: Date) {
     const has_been_reimbursed = (event) => event instanceof CustomerReimbursementRequested;
-    if this.events.some(has_been_reimbursed) return 'FULFILLED';
+    if (this.events.some(has_been_reimbursed)) return 'FULFILLED';
 
     return this.status;
   }
