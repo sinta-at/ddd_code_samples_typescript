@@ -17,4 +17,14 @@ export default class TermsAndConditions {
 		this.effective_date = effective_date;
 		this.expiration_date = expiration_date;
 	}
+
+	getStatus(date: Date) {
+		if (date < this.effective_date) {
+			return "PENDING"
+		}
+		if (date <= this.expiration_date) {
+			return "ACTIVE"
+		}
+		return "EXPIRED"
+	}
 }

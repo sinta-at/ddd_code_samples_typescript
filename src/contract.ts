@@ -38,8 +38,6 @@ export default class Contract {
   }
 
   isInEffect(date: Date) {
-    return (this.status == 'ACTIVE') &&
-      (date >= this.terms_and_conditions.effective_date) &&
-      (date <= this.terms_and_conditions.expiration_date)
+    return (this.status == 'ACTIVE') && (this.terms_and_conditions.getStatus(date) == 'ACTIVE')
   }
 }
