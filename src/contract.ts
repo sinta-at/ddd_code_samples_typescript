@@ -40,7 +40,7 @@ export default class Contract {
   calculateLimitOfLiability() {
     var claim_total = 0.0
     this.claims.forEach(claim => claim_total += claim.amount);
-    return (this.purchase_price - claim_total) * 0.8
+    return (this.purchase_price * 0.8) - claim_total
   }
 
   isInEffect(date: Date) {
