@@ -36,4 +36,16 @@ export default class Contract {
     this.status            = 'PENDING';
     this.claims            = [];
   }
+
+  calculateLimitOfLiability() {
+    var claim_total = 0.0
+    this.claims.forEach(claim => claim_total += claim.amount);
+    return (this.purchase_price - claim_total) * 0.8
+  }
+
+  isInEffect(date: Date) {
+    return (this.status == 'ACTIVE') &&
+      (date >= this.effective_date) &&
+      (date <= this.expiration_date)
+  }
 }
