@@ -17,7 +17,7 @@ export default class Claims_Adjudication {
     let isContractInEffect = contract.isInEffect(new_claim.failure_date)
     let shouldProcessClaim = isClaimAmountWithinLimitOfLiability && isContractInEffect
 
-    if !shouldProcessClaim {
+    if (!shouldProcessClaim) {
       return
     }
 
