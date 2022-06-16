@@ -2,6 +2,7 @@ import {v4 as uuidv4} from 'uuid';
 
 import Claim from './claim';
 import Product from './product';
+import TermsAndConditions from './terms_and_conditions'
 
 // Contract represents an extended warranty for a covered product.
 // A contract is in a PENDING state prior to the effective date,
@@ -12,10 +13,7 @@ export default class Contract {
   id:              string;   // Unique ID
   purchase_price:  number;
   covered_product: Product;
-
-  purchase_date:   Date;
-  effective_date:  Date;
-  expiration_date: Date;
+  terms_and_conditions: TermsAndConditions;
 
   status:          string;
 
@@ -23,14 +21,10 @@ export default class Contract {
 
   constructor(purchase_price:   number,
               product:          Product,
-              purchase_date:    Date,
-              effective_date:   Date,
-              expiration_date:  Date) {
+              terms_and_conditions: TermsAndConditions) {
     this.purchase_price    = purchase_price;
     this.covered_product   = product;
-    this.purchase_date     = purchase_date;
-    this.effective_date    = effective_date;
-    this.expiration_date   = expiration_date;
+    this.terms_and_conditions = terms_and_conditions;
 
     this.id                = uuidv4(); // Autoassigned
     this.status            = 'PENDING';
@@ -45,7 +39,7 @@ export default class Contract {
 
   isInEffect(date: Date) {
     return (this.status == 'ACTIVE') &&
-      (date >= this.effective_date) &&
-      (date <= this.expiration_date)
+      (date >= this.terms_and_conditions.effective_date) &&
+      (date <= this.terms_and_conditions.expiration_date)
   }
 }

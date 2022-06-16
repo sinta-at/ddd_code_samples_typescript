@@ -2,10 +2,12 @@ import Contract from '../contract';
 import Product from '../product';
 import Claim from '../claim';
 import ClaimsAdjudication from '../claims_adjudication';
+import TermsAndConditions from '../terms_and_conditions';
 
 function fakeContract() {
   var product  = new Product('dishwasher', 'OEUOEU23', 'Whirlpool', '7DP840CWDB0');
-  var contract = new Contract(100.0, product, new Date(2010, 5, 6), new Date(2010, 5, 8), new Date(2013, 5, 8));
+  var tnc = new TermsAndConditions(new Date(2010, 5, 6), new Date(2010, 5, 8), new Date(2013, 5, 8));
+  var contract = new Contract(100.0, product, tnc);
   contract.status          = 'ACTIVE'
 
   return contract
